@@ -1,0 +1,37 @@
+const SECOND = 1000;
+const MINUTE = SECOND * 60;
+export default class Clock {
+  constructor(workTime, breakTime, callback) {
+    this.workTime = workTime * MINUTE;
+    this.breakTime = breakTime * MINUTE;
+    this.callback = callback;
+    this.clock = this.workTime;
+  }
+  #action(callback, clock) {
+    return () => {
+      this.#chkEnd(clock);
+      callback(clock);
+      clock -= SECOND;
+    };
+  }
+  #chkEnd(clock) {
+    if (clock <= 0) {
+      this.end();
+    }
+  }
+  start() {
+    this.end();
+    this.ID = setInterval(this.#action(this.callback, this.clock), SECOND);
+  }
+  end() {
+    if (this.ID) clearInterval(this.ID);
+  }
+  switchBreak() {
+    this.end();
+    this.clock = this.breakTime;
+  }
+  switchWork() {
+    this.end();
+    this.clock = this.workTime;
+  }
+}
