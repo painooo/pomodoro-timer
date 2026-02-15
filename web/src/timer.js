@@ -9,8 +9,8 @@ export default class Clock {
   }
   #action(callback, clock) {
     return () => {
-      this.#chkEnd(clock);
       callback(clock);
+      this.#chkEnd(clock);
       clock -= SECOND;
     };
   }
@@ -33,5 +33,9 @@ export default class Clock {
   switchWork() {
     this.end();
     this.clock = this.workTime;
+  }
+  updateTime(workTime, breakTime){
+    this.workTime = workTime * MINUTE;
+    this.breakTime = breakTime * MINUTE;
   }
 }
