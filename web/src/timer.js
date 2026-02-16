@@ -26,15 +26,15 @@ export default class Clock {
   end() {
     if (this.ID) clearInterval(this.ID);
   }
-  switchBreak() {
+  switch(mode) {
     this.end();
-    this.clock = this.breakTime;
+    if (mode.toLowerCase() == "break") {
+      this.clock = this.breakTime;
+    } else if (mode.toLowerCase() == "work") {
+      this.clock = this.workTime;
+    }
   }
-  switchWork() {
-    this.end();
-    this.clock = this.workTime;
-  }
-  updateTime(workTime, breakTime){
+  updateTime(workTime, breakTime) {
     this.workTime = workTime * MINUTE;
     this.breakTime = breakTime * MINUTE;
   }
