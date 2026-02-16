@@ -17,9 +17,18 @@ function updTimer() {
   Timer.updateTime(workMin, breakMin);
 }
 function start(mode) {
+  hideBtn();
   updTimer();
   Timer.switch(mode);
   Timer.start();
+}
+function showBtn() {
+  BreakBtn.style.display = "block";
+  StartBtn.style.display = "block";
+}
+function hideBtn() {
+  BreakBtn.style.display = "none";
+  StartBtn.style.display = "none";
 }
 StartBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -28,7 +37,7 @@ StartBtn.addEventListener("click", (e) => {
 });
 StopBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  BreakBtn.style.display = "block";
+  showBtn();
   Timer.end();
 });
 BreakBtn.addEventListener("click", (e) => {
@@ -39,8 +48,6 @@ BreakBtn.addEventListener("click", (e) => {
 function updDisplay(time) {
   Display.textContent = time / SECOND + " sec";
   if (time == 0) {
-    BreakBtn.style.display = "block";
-  } else {
-    BreakBtn.style.display = "none";
+    showBtn();
   }
 }
