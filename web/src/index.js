@@ -14,6 +14,7 @@ const StartBtn = document.querySelector("#start");
 const StopBtn = document.querySelector("#stop");
 const BreakBtn = document.querySelector('#break');
 const Display = document.querySelector("#display");
+const SECOND = 1000;
 const Timer = new Clock(workMin, breakMin, updDisplay);
 
 StartBtn.addEventListener('click', (e) => {
@@ -26,7 +27,7 @@ StartBtn.addEventListener('click', (e) => {
 });
 StopBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  Timer.stop();
+  Timer.end();
 });
 BreakBtn.addEventListener("click", (e) => {
   e.preventDefault();
