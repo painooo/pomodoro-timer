@@ -1,5 +1,16 @@
 body {
-  background: green;
-  border: goldenrod;
-  padding: 10px;
+  background: white;
+}
+form {
+  padding:10px;
+  width:20vw;
+  display:grid;
+  justify-content: center;
+  background:gray;
+  border-radius: 5px;
+}
+#display {
+  padding:5px;
+  border-radius: 5px;
+  background:rgb(172, 168, 168);
 }
