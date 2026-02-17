@@ -1,13 +1,12 @@
 import "./styles.css";
 import Clock from "./timer.js";
-//TODO Work on style
 const WorkBtn = document.querySelector("#work");
 const StopBtn = document.querySelector("#stop");
 const BreakBtn = document.querySelector("#break");
 const Display = document.querySelector("#display");
 const Mode = document.querySelector("#mode");
 const SECOND = 1000;
-const Timer = new Clock(workMin, breakMin, updDisplay);
+const Timer = new Clock(0, 0, updDisplay);
 
 function setElements() {
   let workMin = document.querySelector("#workMin").valueAsNumber;
@@ -16,8 +15,6 @@ function setElements() {
 }
 function start(mode) {
   let [workMin, breakMin] = setElements();
-  console.log(workMin);
-  console.log(breakMin);
   if (!Number.isNaN(workMin) && !Number.isNaN(breakMin)) {
     hideBtn();
     Timer.updateTime(workMin, breakMin);
@@ -48,9 +45,18 @@ BreakBtn.addEventListener("click", (e) => {
   Mode.textContent = "Break";
   start("Break");
 });
+function formatTime(time) {
+  let timeInSeconds = time / SECOND;
+  let minutes = Math.floor(timeInSeconds / 60);
+  let seconds = Math.floor(timeInSeconds - minutes * 60);
+  if (minutes < 10) minutes = `0${minutes}`;
+  if (seconds < 10) seconds = `0${seconds}`;
+
+  return `${minutes}:${seconds}`;
+}
 function updDisplay(time) {
-  Display.textContent = time / SECOND + " sec";
-  if (time == 0) {
+  Display.textContent = formatTime(time);
+  if (time <= 0) {
     showBtn();
   }
 }

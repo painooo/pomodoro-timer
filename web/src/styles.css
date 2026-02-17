@@ -2,15 +2,15 @@ body {
   background: white;
 }
 form {
-  padding:10px;
-  width:20vw;
-  display:grid;
+  padding: 10px;
+  width: 20vw;
+  display: grid;
   justify-content: center;
-  background:gray;
+  background: gray;
   border-radius: 5px;
 }
 #display {
-  padding:5px;
+  padding: 5px;
   border-radius: 5px;
-  background:rgb(172, 168, 168);
+  background: rgb(172, 168, 168);
 }
