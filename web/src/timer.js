@@ -5,7 +5,7 @@ export default class Clock {
     this.workTime = workTime * MINUTE;
     this.breakTime = breakTime * MINUTE;
     this.callback = callback;
-    this.clock = this.workTime;
+    this.mode = 'work';
   }
   #action(callback, clock) {
     return () => {
@@ -21,17 +21,22 @@ export default class Clock {
   }
   start() {
     this.end();
-    this.ID = setInterval(this.#action(this.callback, this.clock), SECOND);
+    let clock = this.getClock();
+    this.ID = setInterval(this.#action(this.callback, clock), SECOND);
   }
   end() {
     if (this.ID) clearInterval(this.ID);
   }
+  getClock(){
+    if (this.mode == "break") return this.breakTime;
+    return this.workTime;
+  }
   switch(mode) {
     this.end();
     if (mode.toLowerCase() == "break") {
-      this.clock = this.breakTime;
+      this.mode = "break";
     } else if (mode.toLowerCase() == "work") {
-      this.clock = this.workTime;
+      this.mode = "work";
     }
   }
   updateTime(workTime, breakTime) {
